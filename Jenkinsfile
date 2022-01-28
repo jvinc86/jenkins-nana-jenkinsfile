@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment{
+        NUEVA_VERSION_APP = '1.3.7'
+    }
+
     stages{
         stage("Buildear"){
             steps{
@@ -8,13 +12,8 @@ pipeline {
             }
         }
         stage("Testear"){
-            when{
-                expression{
-                    BRANCH_NAME =='dev' || BRANCH_NAME =='master' 
-                }
-            }
             steps{
-                echo 'Testeando la aplicacion'
+                echo "Testeando la aplicacion ${NUEVA_VERSION_APP}"
             }
         }
         stage("Deployar"){
