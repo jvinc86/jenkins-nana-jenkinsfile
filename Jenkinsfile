@@ -1,28 +1,35 @@
+def mi_script_gv
+
 pipeline {
     agent any
-
-    parameters{
-        choice(name: 'QUE_VERSION', choices: ['1.1.0','1.2.0','1.3.0'], description: 'Versiones posibles')
-        booleanParam(name: 'ejecutarTests', defaultValue: true, description: 'Para saber si se ejecutan los tests')
-    }
-
+    parameters{ choice(name: 'QUE_VERSION', choices: ['1.1.0','1.2.0','1.3.0'], description: 'Las versiones') }
     stages{
+        stage("Init"){
+            steps{
+                script{
+                    mi_script_gv = load "mi_script.groovy"
+                }
+            }
+        }
         stage("Buildear"){
             steps{
-                echo 'Buildeando la aplicacion'
+                script{
+                    mi_script_gv.buildearApp()
+                }
             }
         }
         stage("Testear"){
-            when{
-                expression{ params.ejecutarTests == true}
-            }
             steps{
-                echo 'Testeando la aplicacion'
+                script{
+                    mi_script_gv.testarApp()
+                }
             }
         }
         stage("Deployar"){
             steps{
-                echo "Deployando la aplicacion ${params.QUE_VERSION}"
+                script{
+                    mi_script_gv.deployarApp()
+                }
             }
         }
     }
