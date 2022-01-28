@@ -4,17 +4,17 @@ pipeline {
     stages{
         stage('Buildear'){
             steps{
-                sh 'echo Buildeando en Paris'
+                sh 'echo Buildeando la aplicacion'
             }
         }
         stage('Testear'){
             steps{
-                sh 'echo Testeando en Paris'
+                sh 'echo Testeando la aplicacion'
             }
         }
         stage('Deployar'){
             steps{
-                sh 'echo Deployando en Paris'
+                sh 'echo Deployando la aplicacion'
             }
         }
     }
