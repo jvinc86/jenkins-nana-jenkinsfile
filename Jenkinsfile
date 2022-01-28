@@ -3,6 +3,7 @@ pipeline {
 
     environment{
         NUEVA_VERSION_APP = '1.3.7'
+        CREDENCIALES_SERVIDOR = credentials('Tomcat_Credentials')
     }
 
     stages{
@@ -18,7 +19,7 @@ pipeline {
         }
         stage("Deployar"){
             steps{
-                echo 'Deployando la aplicacion'
+                echo "Deployando la aplicacion con las crendenciales ${CREDENCIALES_SERVIDOR}"
             }
         }
     }
