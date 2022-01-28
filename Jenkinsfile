@@ -2,17 +2,17 @@ pipeline {
     agent any
 
     stages{
-        stage('Buildear'){
+        stage("Buildear"){
             steps{
                 echo 'Buildeando la aplicacion'
             }
         }
-        stage('Testear'){
+        stage("Testear"){
             steps{
                 echo 'Testeando la aplicacion'
             }
         }
-        stage('Deployar'){
+        stage("Deployar"){
             steps{
                 echo 'Deployando la aplicacion'
             }
