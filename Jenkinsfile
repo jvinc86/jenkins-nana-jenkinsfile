@@ -9,7 +9,7 @@ pipeline {
         stage("Buildear"){
             steps{
                 echo 'Verificando la version de Maven:'
-                mvn --version
+                sh "mvn --version"
             }
         }
         stage("Testear"){
