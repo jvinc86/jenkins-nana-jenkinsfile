@@ -18,4 +18,10 @@ pipeline {
             }
         }
     }
+    post{
+        always{
+            echo 'Corriendo un POST despues que terminaron los Stages'
+        }
+    }
 }
+
