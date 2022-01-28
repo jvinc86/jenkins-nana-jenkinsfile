@@ -8,6 +8,11 @@ pipeline {
             }
         }
         stage("Testear"){
+            when{
+                expression{
+                    BRANCH_NAME =='dev' || BRANCH_NAME =='master' 
+                }
+            }
             steps{
                 echo 'Testeando la aplicacion'
             }
@@ -16,11 +21,6 @@ pipeline {
             steps{
                 echo 'Deployando la aplicacion'
             }
-        }
-    }
-    post{
-        always{
-            echo 'Corriendo un POST despues que terminaron los Stages'
         }
     }
 }
