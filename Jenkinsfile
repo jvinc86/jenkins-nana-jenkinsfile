@@ -14,9 +14,8 @@ pipeline {
         }
         stage("Deployar"){
             steps{
-                echo "Deployando la aplicacion con las crendenciales"
-                withCredentials( [usernamePassword(credentials: 'Tomcat_Credentials', usernameVariable: MI_USUARIO, passwordVariable: MI_CONTRASENA)] ){
-                    sh "echo Este es mi usuario ${MI_USUARIO} y este es su password ${MI_CONTRASENA}"
+                withCredentials( [usernamePassword(credentialsId: 'Tomcat_Credentials', usernameVariable: 'MI_USUARIO', passwordVariable: 'MI_CONTRASENA')] ){
+                    echo "Deployando con el usuario $MI_USUARIO y la contrasena $MI_CONTRASENA"
                 }
             }
         }
