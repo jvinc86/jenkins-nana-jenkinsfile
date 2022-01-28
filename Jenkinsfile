@@ -1,11 +1,6 @@
 pipeline {
     agent any
 
-    environment{
-        NUEVA_VERSION_APP = '1.3.7'
-        CREDENCIALES_SERVIDOR = credentials('Tomcat_Credentials')
-    }
-
     stages{
         stage("Buildear"){
             steps{
@@ -14,12 +9,15 @@ pipeline {
         }
         stage("Testear"){
             steps{
-                echo "Testeando la aplicacion ${NUEVA_VERSION_APP}"
+                echo "Testeando la aplicacion"
             }
         }
         stage("Deployar"){
             steps{
-                echo "Deployando la aplicacion con las crendenciales ${CREDENCIALES_SERVIDOR}"
+                echo "Deployando la aplicacion con las crendenciales"
+                withCredentials( [usernamePassword(credentials: 'Tomcat_Credentials', usernameVariable: MI_USUARIO, passwordVariable: MI_CONTRASENA)] ){
+                    sh "echo Este es mi usuario ${MI_USUARIO} y este es su password ${MI_CONTRASENA}"
+                }
             }
         }
     }
